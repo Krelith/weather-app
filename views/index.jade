@@ -1,0 +1,462 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  h2 Forecast
+  
+  table
+    tr
+      td= day0
+      td 00:00
+      td 03:00
+      td 06:00
+      td 09:00
+      td 12:00
+      td 15:00
+      td 18:00
+      td 21:00
+    tr
+      td Weather
+      td= day0_time0_weather
+      td= day0_time3_weather
+      td= day0_time6_weather
+      td= day0_time9_weather
+      td= day0_time12_weather
+      td= day0_time15_weather
+      td= day0_time18_weather
+      td= day0_time21_weather
+    tr
+      td Feels-Like Temperature
+      td= day0_time0_feels
+      td= day0_time3_feels
+      td= day0_time6_feels
+      td= day0_time9_feels
+      td= day0_time12_feels
+      td= day0_time15_feels
+      td= day0_time18_feels
+      td= day0_time21_feels
+    tr
+      td Actual Temperature
+      td= day0_time0_temp
+      td= day0_time3_temp
+      td= day0_time6_temp
+      td= day0_time9_temp
+      td= day0_time12_temp
+      td= day0_time15_temp
+      td= day0_time18_temp
+      td= day0_time21_temp
+    tr
+      td Chance of Rain
+      td= day0_time0_rain
+      td= day0_time3_rain
+      td= day0_time6_rain
+      td= day0_time9_rain
+      td= day0_time12_rain
+      td= day0_time15_rain
+      td= day0_time18_rain
+      td= day0_time21_rain
+    tr
+      td Wind Direction
+      td= day0_time0_wind_dir
+      td= day0_time3_wind_dir
+      td= day0_time6_wind_dir
+      td= day0_time9_wind_dir
+      td= day0_time12_wind_dir
+      td= day0_time15_wind_dir
+      td= day0_time18_wind_dir
+      td= day0_time21_wind_dir
+    tr
+      td Wind Speed
+      td= day0_time0_wind_spd
+      td= day0_time3_wind_spd
+      td= day0_time6_wind_spd
+      td= day0_time9_wind_spd
+      td= day0_time12_wind_spd
+      td= day0_time15_wind_spd
+      td= day0_time18_wind_spd
+      td= day0_time21_wind_spd
+    tr
+      td Gust Speed
+      td= day0_time0_wind_gust
+      td= day0_time3_wind_gust
+      td= day0_time6_wind_gust
+      td= day0_time9_wind_gust
+      td= day0_time12_wind_gust
+      td= day0_time15_wind_gust
+      td= day0_time18_wind_gust
+      td= day0_time21_wind_gust
+    tr
+      td Visibility
+      td= day0_time0_vis
+      td= day0_time3_vis
+      td= day0_time6_vis
+      td= day0_time9_vis
+      td= day0_time12_vis
+      td= day0_time15_vis
+      td= day0_time18_vis
+      td= day0_time21_vis
+  table
+    tr
+      td= day1
+      td 00:00
+      td 03:00
+      td 06:00
+      td 09:00
+      td 12:00
+      td 15:00
+      td 18:00
+      td 21:00
+    tr
+      td Weather
+      td= day1_time0_weather
+      td= day1_time3_weather
+      td= day1_time6_weather
+      td= day1_time9_weather
+      td= day1_time12_weather
+      td= day1_time15_weather
+      td= day1_time18_weather
+      td= day1_time21_weather
+    tr
+      td Feels-Like Temperature
+      td= day1_time0_feels
+      td= day1_time3_feels
+      td= day1_time6_feels
+      td= day1_time9_feels
+      td= day1_time12_feels
+      td= day1_time15_feels
+      td= day1_time18_feels
+      td= day1_time21_feels
+    tr
+      td Actual Temperature
+      td= day1_time0_temp
+      td= day1_time3_temp
+      td= day1_time6_temp
+      td= day1_time9_temp
+      td= day1_time12_temp
+      td= day1_time15_temp
+      td= day1_time18_temp
+      td= day1_time21_temp
+    tr
+      td Chance of Rain
+      td= day1_time0_rain
+      td= day1_time3_rain
+      td= day1_time6_rain
+      td= day1_time9_rain
+      td= day1_time12_rain
+      td= day1_time15_rain
+      td= day1_time18_rain
+      td= day1_time21_rain
+    tr
+      td Wind Direction
+      td= day1_time0_wind_dir
+      td= day1_time3_wind_dir
+      td= day1_time6_wind_dir
+      td= day1_time9_wind_dir
+      td= day1_time12_wind_dir
+      td= day1_time15_wind_dir
+      td= day1_time18_wind_dir
+      td= day1_time21_wind_dir
+    tr
+      td Wind Speed
+      td= day1_time0_wind_spd
+      td= day1_time3_wind_spd
+      td= day1_time6_wind_spd
+      td= day1_time9_wind_spd
+      td= day1_time12_wind_spd
+      td= day1_time15_wind_spd
+      td= day1_time18_wind_spd
+      td= day1_time21_wind_spd
+    tr
+      td Gust Speed
+      td= day1_time0_wind_gust
+      td= day1_time3_wind_gust
+      td= day1_time6_wind_gust
+      td= day1_time9_wind_gust
+      td= day1_time12_wind_gust
+      td= day1_time15_wind_gust
+      td= day1_time18_wind_gust
+      td= day1_time21_wind_gust
+    tr
+      td Visibility
+      td= day1_time0_vis
+      td= day1_time3_vis
+      td= day1_time6_vis
+      td= day1_time9_vis
+      td= day1_time12_vis
+      td= day1_time15_vis
+      td= day1_time18_vis
+      td= day1_time21_vis
+  table
+    tr
+      td= day2
+      td 00:00
+      td 03:00
+      td 06:00
+      td 09:00
+      td 12:00
+      td 15:00
+      td 18:00
+      td 21:00
+    tr
+      td Weather
+      td= day2_time0_weather
+      td= day2_time3_weather
+      td= day2_time6_weather
+      td= day2_time9_weather
+      td= day2_time12_weather
+      td= day2_time15_weather
+      td= day2_time18_weather
+      td= day2_time21_weather
+    tr
+      td Feels-Like Temperature
+      td= day2_time0_feels
+      td= day2_time3_feels
+      td= day2_time6_feels
+      td= day2_time9_feels
+      td= day2_time12_feels
+      td= day2_time15_feels
+      td= day2_time18_feels
+      td= day2_time21_feels
+    tr
+      td Actual Temperature
+      td= day2_time0_temp
+      td= day2_time3_temp
+      td= day2_time6_temp
+      td= day2_time9_temp
+      td= day2_time12_temp
+      td= day2_time15_temp
+      td= day2_time18_temp
+      td= day2_time21_temp
+    tr
+      td Chance of Rain
+      td= day2_time0_rain
+      td= day2_time3_rain
+      td= day2_time6_rain
+      td= day2_time9_rain
+      td= day2_time12_rain
+      td= day2_time15_rain
+      td= day2_time18_rain
+      td= day2_time21_rain
+    tr
+      td Wind Direction
+      td= day2_time0_wind_dir
+      td= day2_time3_wind_dir
+      td= day2_time6_wind_dir
+      td= day2_time9_wind_dir
+      td= day2_time12_wind_dir
+      td= day2_time15_wind_dir
+      td= day2_time18_wind_dir
+      td= day2_time21_wind_dir
+    tr
+      td Wind Speed
+      td= day2_time0_wind_spd
+      td= day2_time3_wind_spd
+      td= day2_time6_wind_spd
+      td= day2_time9_wind_spd
+      td= day2_time12_wind_spd
+      td= day2_time15_wind_spd
+      td= day2_time18_wind_spd
+      td= day2_time21_wind_spd
+    tr
+      td Gust Speed
+      td= day2_time0_wind_gust
+      td= day2_time3_wind_gust
+      td= day2_time6_wind_gust
+      td= day2_time9_wind_gust
+      td= day2_time12_wind_gust
+      td= day2_time15_wind_gust
+      td= day2_time18_wind_gust
+      td= day2_time21_wind_gust
+    tr
+      td Visibility
+      td= day2_time0_vis
+      td= day2_time3_vis
+      td= day2_time6_vis
+      td= day2_time9_vis
+      td= day2_time12_vis
+      td= day2_time15_vis
+      td= day2_time18_vis
+      td= day2_time21_vis
+  table
+    tr
+      td= day3
+      td 00:00
+      td 03:00
+      td 06:00
+      td 09:00
+      td 12:00
+      td 15:00
+      td 18:00
+      td 21:00
+    tr
+      td Weather
+      td= day3_time0_weather
+      td= day3_time3_weather
+      td= day3_time6_weather
+      td= day3_time9_weather
+      td= day3_time12_weather
+      td= day3_time15_weather
+      td= day3_time18_weather
+      td= day3_time21_weather
+    tr
+      td Feels-Like Temperature
+      td= day3_time0_feels
+      td= day3_time3_feels
+      td= day3_time6_feels
+      td= day3_time9_feels
+      td= day3_time12_feels
+      td= day3_time15_feels
+      td= day3_time18_feels
+      td= day3_time21_feels
+    tr
+      td Actual Temperature
+      td= day3_time0_temp
+      td= day3_time3_temp
+      td= day3_time6_temp
+      td= day3_time9_temp
+      td= day3_time12_temp
+      td= day3_time15_temp
+      td= day3_time18_temp
+      td= day3_time21_temp
+    tr
+      td Chance of Rain
+      td= day3_time0_rain
+      td= day3_time3_rain
+      td= day3_time6_rain
+      td= day3_time9_rain
+      td= day3_time12_rain
+      td= day3_time15_rain
+      td= day3_time18_rain
+      td= day3_time21_rain
+    tr
+      td Wind Direction
+      td= day3_time0_wind_dir
+      td= day3_time3_wind_dir
+      td= day3_time6_wind_dir
+      td= day3_time9_wind_dir
+      td= day3_time12_wind_dir
+      td= day3_time15_wind_dir
+      td= day3_time18_wind_dir
+      td= day3_time21_wind_dir
+    tr
+      td Wind Speed
+      td= day3_time0_wind_spd
+      td= day3_time3_wind_spd
+      td= day3_time6_wind_spd
+      td= day3_time9_wind_spd
+      td= day3_time12_wind_spd
+      td= day3_time15_wind_spd
+      td= day3_time18_wind_spd
+      td= day3_time21_wind_spd
+    tr
+      td Gust Speed
+      td= day3_time0_wind_gust
+      td= day3_time3_wind_gust
+      td= day3_time6_wind_gust
+      td= day3_time9_wind_gust
+      td= day3_time12_wind_gust
+      td= day3_time15_wind_gust
+      td= day3_time18_wind_gust
+      td= day3_time21_wind_gust
+    tr
+      td Visibility
+      td= day3_time0_vis
+      td= day3_time3_vis
+      td= day3_time6_vis
+      td= day3_time9_vis
+      td= day3_time12_vis
+      td= day3_time15_vis
+      td= day3_time18_vis
+      td= day3_time21_vis
+  table
+    tr
+      td= day4
+      td 00:00
+      td 03:00
+      td 06:00
+      td 09:00
+      td 12:00
+      td 15:00
+      td 18:00
+      td 21:00
+    tr
+      td Weather
+      td= day4_time0_weather
+      td= day4_time3_weather
+      td= day4_time6_weather
+      td= day4_time9_weather
+      td= day4_time12_weather
+      td= day4_time15_weather
+      td= day4_time18_weather
+      td= day4_time21_weather
+    tr
+      td Feels-Like Temperature
+      td= day4_time0_feels
+      td= day4_time3_feels
+      td= day4_time6_feels
+      td= day4_time9_feels
+      td= day4_time12_feels
+      td= day4_time15_feels
+      td= day4_time18_feels
+      td= day4_time21_feels
+    tr
+      td Actual Temperature
+      td= day4_time0_temp
+      td= day4_time3_temp
+      td= day4_time6_temp
+      td= day4_time9_temp
+      td= day4_time12_temp
+      td= day4_time15_temp
+      td= day4_time18_temp
+      td= day4_time21_temp
+    tr
+      td Chance of Rain
+      td= day4_time0_rain
+      td= day4_time3_rain
+      td= day4_time6_rain
+      td= day4_time9_rain
+      td= day4_time12_rain
+      td= day4_time15_rain
+      td= day4_time18_rain
+      td= day4_time21_rain
+    tr
+      td Wind Direction
+      td= day4_time0_wind_dir
+      td= day4_time3_wind_dir
+      td= day4_time6_wind_dir
+      td= day4_time9_wind_dir
+      td= day4_time12_wind_dir
+      td= day4_time15_wind_dir
+      td= day4_time18_wind_dir
+      td= day4_time21_wind_dir
+    tr
+      td Wind Speed
+      td= day4_time0_wind_spd
+      td= day4_time3_wind_spd
+      td= day4_time6_wind_spd
+      td= day4_time9_wind_spd
+      td= day4_time12_wind_spd
+      td= day4_time15_wind_spd
+      td= day4_time18_wind_spd
+      td= day4_time21_wind_spd
+    tr
+      td Gust Speed
+      td= day4_time0_wind_gust
+      td= day4_time3_wind_gust
+      td= day4_time6_wind_gust
+      td= day4_time9_wind_gust
+      td= day4_time12_wind_gust
+      td= day4_time15_wind_gust
+      td= day4_time18_wind_gust
+      td= day4_time21_wind_gust
+    tr
+      td Visibility
+      td= day4_time0_vis
+      td= day4_time3_vis
+      td= day4_time6_vis
+      td= day4_time9_vis
+      td= day4_time12_vis
+      td= day4_time15_vis
+      td= day4_time18_vis
+      td= day4_time21_vis
