@@ -15,16 +15,33 @@ let day2 = "";
 let day3 = "";
 let day4 = "";
 
+let check1bool = false;
+let check2bool = false;
+let check3bool = false;
+
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
 
 const url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/310016?res=3hourly&key=2e4007b4-2c8a-4527-992e-7b5ad55090f1";
 
 request(url, { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
-    let pd = body.SiteRep.DV.Location.Period;
-    for (let i = 5; i > 5 - pd.length; i--){
-        let rp = body.SiteRep.DV.Location.Period[i].Rep;
-        for (let j = 8; j > 8 - rp.length; j--){
+    const pd = body.SiteRep.DV.Location.Period;
+    const rp = body.SiteRep.DV.Location.Period[0].Rep;
+    if (rp.length < 8){
+        for (let i = 0; i < 8 - rp.length; i++){
+            weather.push("n/a");
+            feels.push("n/a");
+            temps.push("n/a");
+            rain.push("n/a");
+            wind_dir.push("n/a");
+            wind_spd.push("n/a");
+            wind_gust.push("n/a");
+            vis.push("n/a");
+        }
+    }
+    for (let i = 0; i < pd.length; i++){
+        const rp0 = body.SiteRep.DV.Location.Period[i].Rep;
+        for (let j = 0; j < rp0.length; j++){
             weather.push(body.SiteRep.DV.Location.Period[i].Rep[j].W);
             feels.push(body.SiteRep.DV.Location.Period[i].Rep[j].F);
             temps.push(body.SiteRep.DV.Location.Period[i].Rep[j].T);
@@ -38,7 +55,7 @@ request(url, { json: true }, (err, res, body) => {
 });
 
 function dataCheck(){
-    for (let i = 0; i < 40; i++){
+    for (let i = 0; i < weather.length; i++){
         if (weather[i] == "NA") weather[i] = "Not Available";
         if (weather[i] == 0) weather[i] = "Clear Night";
         if (weather[i] == 1) weather[i] = "Sunny Day";
@@ -96,9 +113,9 @@ function getDays(){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  dataCheck();
-  getDays();
-  res.render('index', { 
+    dataCheck();
+    getDays();
+    res.render('index', { 
                         title: "Kev's Weather App", 
                         
                         day0_time0_weather: weather[0],
@@ -438,5 +455,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-
-// Weather Type (W), Feels-like Temp (F), Temp (T), Rain Chance (Pp), Wind Direction (D), Wind Speed (S), Wind Gust (G), Visibility (V)
