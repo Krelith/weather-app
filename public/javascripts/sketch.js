@@ -1,7 +1,7 @@
-function Cloud(x, y){
+function Cloud(x, y, v){
     this.x = x;
     this.y = y;
-    
+    this.v = v;
     this.show = () => {
         fill(255);
         noStroke();
@@ -12,7 +12,7 @@ function Cloud(x, y){
     }
     
     this.move = () => {
-        this.x -= 3; // cloud move speed
+        this.x -= this.v; // cloud move speed
     }
 }
 
@@ -31,13 +31,12 @@ let sun = new Sun();
 
 function setup(){
     createCanvas(screen.width, screen.height);
-    let rand = Math.floor(Math.random() * 50);
 }
 
 function draw(){
     background(52, 152, 219);
     sun.show();
-    if (frameCount % 20 == 0) clouds.push(new Cloud(2000, Math.floor(Math.random() * screen.height)));
+    if (frameCount % 20 == 0) clouds.push(new Cloud(2000, Math.floor(Math.random() * screen.height), Math.floor(Math.random() * 5)));
     for (let i = 0; i < clouds.length; i++){
         clouds[i].show();
         clouds[i].move();
