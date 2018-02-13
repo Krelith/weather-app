@@ -2,7 +2,7 @@ function Cloud(x, y){
     this.x = x;
     this.y = y;
     
-    this.show = function(){
+    this.show = () => {
         fill(255);
         noStroke();
         ellipse(this.x, this.y, 100, 100);
@@ -11,7 +11,7 @@ function Cloud(x, y){
         ellipse(this.x + 50, this.y, 100, 100);
     }
     
-    this.move = function(){
+    this.move = () => {
         this.x -= 3; // cloud move speed
     }
 }
@@ -20,7 +20,7 @@ function Sun(){
     this.x = 30;
     this.y = 30;
     
-    this.show = function(){
+    this.show = () => {
         fill(255, 255, 0);
         ellipse(this.x, this.y, 300, 300);
     }
