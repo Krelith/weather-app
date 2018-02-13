@@ -1,3 +1,4 @@
+// Sets bold text across appropriate cells in each table
 let cell = document.getElementsByTagName('td');
 
 function embolden(){
@@ -6,8 +7,8 @@ function embolden(){
             cell[i].style.fontWeight = "bold";
         }
         if (i % 9 == 0 && i % 81 == 0){
-            cell[i].style.backgroundColor = "#000";
-            cell[i].style.color = "#fff";
+            cell[i].style.backgroundColor = "#fff";
+            cell[i].style.color = "#2980b9";
         }
     }
 }

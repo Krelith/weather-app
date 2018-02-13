@@ -1,59 +1,67 @@
+// Global constants and required node packages
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-let weather = [];
-let feels = [];
-let temps = [];
-let rain = [];
-let wind_dir = [];
-let wind_spd = [];
-let wind_gust = [];
-let vis = [];
-let day0 = "";
+
+// Global arrays and variables
+let weather = []; // Array for weather (type) responses (W)
+let feels = []; // Array for feels-like temperature responses (F)
+let temps = []; // Array for actual temperature responses (T)
+let rain = []; // Array for precipitation probability responses (Pp)
+let wind_dir = []; // Array for wind direction responses (D)
+let wind_spd = []; // Array for wind speed responses (S)
+let wind_gust = []; // Array for wind gust speed responses (G)
+let vis = []; // Array for visibility responses (V)
+let day0 = ""; // Variable for day of the week the response was called on. Variables 1, 2, 3 & 4 populate as the following four days
 let day1 = "";
 let day2 = "";
 let day3 = "";
 let day4 = "";
 
-let check1bool = false;
-let check2bool = false;
-let check3bool = false;
-
+// Array of days of the week, four additional entries for ease of populating day1/2/3/4 variables 
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
 
+// API call for 5-day, 3-hourly forecast from MET Office Datapoint re: Plymouth, UK. Includes API key (not surfaced on client)
 const url = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/310016?res=3hourly&key=2e4007b4-2c8a-4527-992e-7b5ad55090f1";
 
-request(url, { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-    const pd = body.SiteRep.DV.Location.Period;
-    const rp = body.SiteRep.DV.Location.Period[0].Rep;
-    if (rp.length < 8){
-        for (let i = 0; i < 8 - rp.length; i++){
-            weather.push("n/a");
-            feels.push("n/a");
-            temps.push("n/a");
-            rain.push("n/a");
-            wind_dir.push("n/a");
-            wind_spd.push("n/a");
-            wind_gust.push("n/a");
-            vis.push("n/a");
+// HTTP GET request
+function dataRequest(){
+    request(url, { json: true }, (err, res, body) => {
+      if (err) { return console.log(err); }
+        const pd = body.SiteRep.DV.Location.Period;
+        const rp = body.SiteRep.DV.Location.Period[0].Rep;
+        if (rp.length < 8){     // Datapoint calls don't always return older reports on the current day (eg. the 3am forecast on a call at 3pm), this populates the empty responses with "n/a"
+            for (let i = 0; i < 8 - rp.length; i++){
+                weather.push("n/a");
+                feels.push("n/a");
+                temps.push("n/a");
+                rain.push("n/a");
+                wind_dir.push("n/a");
+                wind_spd.push("n/a");
+                wind_gust.push("n/a");
+                vis.push("n/a");
+            }
         }
-    }
-    for (let i = 0; i < pd.length; i++){
-        const rp0 = body.SiteRep.DV.Location.Period[i].Rep;
-        for (let j = 0; j < rp0.length; j++){
-            weather.push(body.SiteRep.DV.Location.Period[i].Rep[j].W);
-            feels.push(body.SiteRep.DV.Location.Period[i].Rep[j].F);
-            temps.push(body.SiteRep.DV.Location.Period[i].Rep[j].T);
-            rain.push(body.SiteRep.DV.Location.Period[i].Rep[j].Pp + "%");
-            wind_dir.push(body.SiteRep.DV.Location.Period[i].Rep[j].D);
-            wind_spd.push(body.SiteRep.DV.Location.Period[i].Rep[j].S);
-            wind_gust.push(body.SiteRep.DV.Location.Period[i].Rep[j].G);
-            vis.push(body.SiteRep.DV.Location.Period[i].Rep[j].V);
+        // Nested for loop to cycle through each 3-hourly report (up to 8) over a five-day period, returning a response for each reading per period per day. 
+        for (let i = 0; i < pd.length; i++){ 
+            const deg = '\u2103';
+            const rp0 = body.SiteRep.DV.Location.Period[i].Rep; // Same as above constant, unsure about scope so new const made, may be able to bin
+            for (let j = 0; j < rp0.length; j++){
+                weather.push(body.SiteRep.DV.Location.Period[i].Rep[j].W);
+                feels.push(body.SiteRep.DV.Location.Period[i].Rep[j].F + " " + deg);
+                temps.push(body.SiteRep.DV.Location.Period[i].Rep[j].T + " " + deg);
+                rain.push(body.SiteRep.DV.Location.Period[i].Rep[j].Pp + "%");
+                wind_dir.push(body.SiteRep.DV.Location.Period[i].Rep[j].D);
+                wind_spd.push(body.SiteRep.DV.Location.Period[i].Rep[j].S + " m/s");
+                wind_gust.push(body.SiteRep.DV.Location.Period[i].Rep[j].G + " m/s");
+                vis.push(body.SiteRep.DV.Location.Period[i].Rep[j].V);
+            }
         }
-    }
-});
+    });
+//    console.log("API request sent.");
+}
 
+// Alters returned data to readable format
 function dataCheck(){
     for (let i = 0; i < weather.length; i++){
         if (weather[i] == "NA") weather[i] = "Not Available";
@@ -96,8 +104,10 @@ function dataCheck(){
         if (vis[i] == "VG") vis[i] = "Very Good";
         if (vis[i] == "EX") vis[i] = "Excellent";
     }
+//    console.log("Data formatted");
 }
 
+// Calculates day of API call and assigns correct day labels to the five day variables using day label array
 function getDays(){
     let d = new Date();
     for (let i = 0; i < 6; i++){
@@ -109,12 +119,17 @@ function getDays(){
             day4 = days[i+4];
         }
     }
+//    console.log("Days calculated");
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    // Call API data functions
+    dataRequest();
     dataCheck();
     getDays();
+    
+    // Keywords for template, for dynamic placement on rendered page
     res.render('index', { 
                         title: "Kev's Weather App", 
                         
