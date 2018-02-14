@@ -52,8 +52,8 @@ function dataRequest(){
                 temps.push(body.SiteRep.DV.Location.Period[i].Rep[j].T + " " + deg);
                 rain.push(body.SiteRep.DV.Location.Period[i].Rep[j].Pp + "%");
                 wind_dir.push(body.SiteRep.DV.Location.Period[i].Rep[j].D);
-                wind_spd.push(body.SiteRep.DV.Location.Period[i].Rep[j].S + " m/s");
-                wind_gust.push(body.SiteRep.DV.Location.Period[i].Rep[j].G + " m/s");
+                wind_spd.push(body.SiteRep.DV.Location.Period[i].Rep[j].S + " mph");
+                wind_gust.push(body.SiteRep.DV.Location.Period[i].Rep[j].G + " mph");
                 vis.push(body.SiteRep.DV.Location.Period[i].Rep[j].V);
             }
         }
